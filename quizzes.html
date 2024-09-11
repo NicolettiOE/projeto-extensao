@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <header class="cabecalho">
+        <nav class="cabecalho__menu">
+            <a class="cabecalho__menu__link" href="index.html">Sobre o projeto</a>
+            <a class="cabecalho__menu__link" href="quizzes.html">Quizzes</a>
+            <a class="cabecalho__menu__link" href="contato.html">Contato</a>
+        </nav>
+    </header>    
+     <!-- Seção de Quiz -->
+     <div class="titulo-quiz">
+       <h2>Teste suas Soft Skills!</h2>
+     </div>
+     <form id="quiz-form">
+         <!-- Perguntas vão aparecer uma de cada vez -->
+         <div class="quiz-pergunta" id="pergunta-1">
+             <p>1. Qual das opções abaixo é uma soft skill?</p>
+             <label><input type="radio" name="q1" value="errado"> Conhecimento em linguagens de programação</label><br>
+             <label><input type="radio" name="q1" value="certo"> Comunicação eficaz</label><br>
+             <label><input type="radio" name="q1" value="errado"> Certificação técnica</label>
+         </div>
+         <div class="quiz-pergunta" id="pergunta-2" style="display:none;">
+             <p>2. Adaptabilidade é importante para:</p>
+             <label><input type="radio" name="q2" value="certo"> Se ajustar a mudanças no ambiente de trabalho</label><br>
+             <label><input type="radio" name="q2" value="errado"> Especificar requisitos de software</label><br>
+             <label><input type="radio" name="q2" value="errado"> Gerenciar bancos de dados</label>
+         </div>
+         <div class="quiz-pergunta" id="pergunta-3" style="display:none;">
+            <p>3. Qual das alternativas melhor define "trabalho em equipe"? </p>
+            <label><input type="radio" name="q3" value="errado"> Trabalhar sozinho sem depender dos outros</label><br>
+            <label><input type="radio" name="q3" value="certo"> Colaborar com os colegas para atingir um objetivo comum </label><br>
+            <label><input type="radio" name="q3" value="errado"> Delegar todo o trabalho para outras pessoas</label><br>
+            <label><input type="radio" name="q3" value="errado"> Confiar apenas no seu próprio julgamento</label>
+        </div>
+        <div class="quiz-pergunta" id="pergunta-4" style="display:none;">
+            <p>4. O que é gerenciamento de tempo? </p>
+            <label><input type="radio" name="q4" value="certo"> Capacidade de organizar e administrar tarefas e pessoas </label><br>
+            <label><input type="radio" name="q4" value="errado"> Realizar todas as tarefas rapidamente, sem planejamento </label><br>
+            <label><input type="radio" name="q4" value="errado"> Delegar todas as tarefas para outras pessoas</label><br>
+            <label><input type="radio" name="q4" value="errado"> Evitar fazer pausas durante o trabalho</label>
+        </div>
+         <div class="botao-proximo">
+            <button type="button" id="next-question">Próxima Pergunta</button>
+            <button type="submit" id="submit-quiz" style="display:none;">Enviar Respostas</button>
+         </div>
+     </form>
+     <div id="feedback"></div>
+
+    <script> 
+    // Seleciona os elementos das perguntas e botões
+    const perguntas = document.querySelectorAll('.quiz-pergunta');
+    const botaoProximo = document.getElementById('next-question');
+    const botaoEnviar = document.getElementById('submit-quiz');
+    const formularioQuiz = document.getElementById('quiz-form');
+    const feedbackDiv = document.getElementById('feedback');
+
+    // Variável para controlar a pergunta atual
+    let perguntaAtual = 0;
+
+    // Função para mostrar a próxima pergunta
+    function mostrarProximaPergunta() {
+        // Esconde a pergunta atual
+        perguntas[perguntaAtual].style.display = 'none';
+
+        // Avança para a próxima pergunta
+        perguntaAtual++;
+
+        // Se ainda houver perguntas, mostra a próxima
+        if (perguntaAtual < perguntas.length) {
+            perguntas[perguntaAtual].style.display = 'block';
+        }
+
+        // Se for a última pergunta, esconde o botão "Próxima Pergunta" e mostra o botão "Enviar Respostas"
+        if (perguntaAtual === perguntas.length - 1) {
+            botaoProximo.style.display = 'none';
+            botaoEnviar.style.display = 'inline-block';
+        }
+    }
+
+    // Função para calcular as respostas corretas
+    function calcularRespostas(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        let pontuacao = 0;
+
+        // Verifica as respostas corretas
+        const respostasCorretas = {
+            q1: 'certo',
+            q2: 'certo',
+            q3: 'certo',
+            q4: 'certo'
+        };
+
+        // Para cada resposta, verifica se o valor está correto
+        for (let [questao, resposta] of Object.entries(respostasCorretas)) {
+            const respostaSelecionada = formularioQuiz[questao].value;
+            if (respostaSelecionada === resposta) {
+                pontuacao++;
+            }
+        }
+
+        // Exibe o feedback com a pontuação
+        feedbackDiv.innerHTML = `<p>Você acertou ${pontuacao} de ${Object.keys(respostasCorretas).length} questões!</p>`;
+        feedbackDiv.style.fontSize = '18px';
+        feedbackDiv.style.marginTop = '20px';
+
+        // Opcional: Desabilita os botões após o envio
+        botaoProximo.disabled = true;
+        botaoEnviar.disabled = true;
+    }
+
+    // Evento para avançar para a próxima pergunta
+    botaoProximo.addEventListener('click', mostrarProximaPergunta);
+
+    // Evento para calcular e exibir a pontuação quando o quiz for enviado
+    formularioQuiz.addEventListener('submit', calcularRespostas);
+
+    // Inicia o quiz mostrando apenas a primeira pergunta
+    perguntas[perguntaAtual].style.display = 'block';
+    </script>
+</body>
+</html>
+
+<footer class="rodape">
+    <p>Desenvolvido por Rafaela </p>

@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    font-size: 16px; /* Ajustado para uma única definição */
+}
+
+.cabecalho {
+    background-color: #0346cdb8;
+    padding: 20px;
+}
+
+.cabecalho__menu {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cabecalho__menu__link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.cabecalho__menu__link:hover {
+    background-color: #033bb8; /* Ajuste a cor do hover para não ficar igual ao fundo */
+}
+
+.apresentacao {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.apresentacao__conteudo__titulo {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.titulo-destaque {
+    color: #0346cdb8;
+}
+
+.apresentacao__conteudo__paragrafo {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 40px; 
+}
+
+.apresentacao__links__subtitulo {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px; 
+}
+
+.tamanho-logo {
+    display: flex;
+    justify-content: center;
+    width: 900px;
+    transform: scale(1.8); /* Ajuste conforme necessário */
+    margin-top: 30px; 
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #5500f4; 
+    text-decoration: underline;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 180px;
+    background-color: rgb(154, 184, 211);
+    color: #000000;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%; 
+    left: 50%;
+    margin-left: -90px; 
+    opacity: 0;
+    transition: opacity 0.5s; /* Ajuste a transição para ser mais suave */
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.imagem-logo {
+    width: 400px;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.rodape {
+    background-color: #0346cdb8;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 50px;
+}
+
+.titulo-quiz, .quiz-pergunta, .botao-resposta, .formulario {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.quiz-pergunta, .botao-resposta {
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.formulario {
+    padding: 5px;
+    margin-top: 50px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+
+.iframe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+iframe {
+    width: 100%;
+    height: 800px; 
+    border: none;
+}
